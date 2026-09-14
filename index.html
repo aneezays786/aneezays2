@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aneezay's | Women's Pakistani Fashion</title>
+  <meta name="description" content="Aneezay's elegant Pakistani fashion. Shop online and order directly through WhatsApp.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#27221f;
+      --cream:#f8f1e8;
+      --paper:#fffdf9;
+      --sand:#e9ded2;
+      --muted:#766f69;
+      --line:#ddd1c6;
+      --green:#25D366;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Montserrat,sans-serif;color:var(--ink);background:var(--cream)}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    a{text-decoration:none;color:inherit}
+
+    .nav{
+      height:78px;background:rgba(255,253,249,.98);
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 5%;position:sticky;top:0;z-index:1000;
+      box-shadow:0 2px 18px rgba(0,0,0,.06)
+    }
+    .logo{font:700 38px "Cormorant Garamond",serif}
+    .nav-links{display:flex;gap:27px;list-style:none}
+    .nav-links a{font-size:11px;letter-spacing:1px}
+    .nav-links a:hover{opacity:.55}
+    .bag-btn{
+      border:0;background:var(--ink);color:#fff;border-radius:24px;
+      padding:12px 19px
+    }
+
+    .hero{
+      min-height:560px;display:grid;grid-template-columns:1fr 1fr;
+      background:#d7cec5
+    }
+    .hero-copy{display:flex;align-items:center;justify-content:center;text-align:center;padding:50px}
+    .hero-inner{max-width:520px}
+    .kicker{font-size:11px;letter-spacing:4px;margin-bottom:13px}
+    .hero h1{font:600 clamp(62px,7vw,94px) "Cormorant Garamond",serif;line-height:.9}
+    .hero-sub{font-size:13px;letter-spacing:4px;margin:22px 0 30px}
+    .primary{
+      border:0;background:var(--ink);color:white;padding:15px 29px;
+      letter-spacing:1.5px;font-size:11px
+    }
+    .hero-img{width:100%;height:100%;min-height:560px;object-fit:cover;object-position:center}
+
+    .section{padding:68px 5%}
+    .section.alt{background:#eee4d9}
+    .section-head{
+      display:flex;align-items:end;justify-content:space-between;margin-bottom:30px
+    }
+    .section-head h2{font:600 50px "Cormorant Garamond",serif}
+    .section-head p{color:var(--muted);font-size:12px;margin-top:3px}
+    .view{font-size:10px;letter-spacing:1.5px}
+
+    .products{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+    .card{background:var(--paper);box-shadow:0 8px 25px rgba(39,34,31,.06);overflow:hidden}
+    .card img{display:block;width:100%;height:340px;object-fit:cover}
+    .info{padding:15px}
+    .category{font-size:9px;letter-spacing:1.7px;text-transform:uppercase;color:#9a806e}
+    .info h3{font:600 24px "Cormorant Garamond",serif;margin:4px 0}
+    .price{font-size:13px;margin-bottom:13px}
+    .add{
+      width:100%;border:0;background:var(--ink);color:#fff;padding:12px;
+      font-size:10px;letter-spacing:1px
+    }
+    .add:hover{opacity:.86}
+
+    /* CART */
+    .cart{
+      position:fixed;top:0;right:-430px;width:410px;max-width:92vw;height:100vh;
+      background:var(--paper);z-index:3000;padding:25px;
+      box-shadow:-8px 0 30px rgba(0,0,0,.18);transition:right .3s;overflow-y:auto
+    }
+    .cart.open{right:0}
+    .cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+    .cart-head h2,.checkout h2{font:600 36px "Cormorant Garamond",serif}
+    .close{border:0;background:none;font-size:27px}
+    .cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+    .cart-item img{width:72px;height:88px;object-fit:cover}
+    .cart-info{flex:1}
+    .cart-info h4{font:600 20px "Cormorant Garamond",serif}
+    .qty{display:flex;align-items:center;gap:8px;margin-top:8px}
+    .qty button{width:27px;height:27px;border:1px solid var(--line);background:#fff}
+    .remove{border:0;background:none;color:#9b625c;font-size:10px;margin-top:5px}
+    .total{display:flex;justify-content:space-between;font-weight:600;margin:22px 0}
+    .checkout-btn{
+      width:100%;border:0;background:var(--ink);color:white;padding:15px;
+      font-size:11px;letter-spacing:1px
+    }
+
+    /* CHECKOUT */
+    .overlay{
+      display:none;position:fixed;inset:0;background:rgba(0,0,0,.53);
+      z-index:4000;align-items:center;justify-content:center;padding:18px
+    }
+    .overlay.open{display:flex}
+    .checkout{
+      width:520px;max-width:100%;max-height:92vh;overflow:auto;
+      background:var(--paper);padding:30px
+    }
+    .checkout-top{display:flex;justify-content:space-between;align-items:center}
+    .checkout>p{font-size:12px;color:var(--muted);margin:3px 0 20px}
+    .field{margin-bottom:13px}
+    .field label{display:block;font-size:11px;margin-bottom:6px}
+    .field input,.field textarea,.field select{
+      width:100%;padding:12px;border:1px solid var(--line);
+      background:white;outline:none
+    }
+    .field textarea{min-height:80px;resize:vertical}
+    .form-actions{display:flex;gap:10px;margin-top:18px}
+    .cancel,.whatsapp{flex:1;border:0;padding:14px}
+    .cancel{background:#e4ddd6}
+    .whatsapp{background:var(--green);color:#fff;font-weight:600}
+
+    .contact{background:var(--ink);color:#fff;text-align:center;padding:65px 20px}
+    .contact h2{font:600 46px "Cormorant Garamond",serif}
+    .contact p{font-size:13px;margin-top:9px}
+    .contact a{text-decoration:underline;text-underline-offset:3px}
+    footer{background:#1b1715;color:#cfc8c1;text-align:center;padding:18px;font-size:11px}
+
+    .toast{
+      position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);
+      background:var(--ink);color:white;padding:12px 20px;opacity:0;
+      pointer-events:none;transition:.25s;z-index:5000;font-size:12px
+    }
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .products{grid-template-columns:repeat(2,1fr)}
+      .hero{grid-template-columns:1fr}
+      .hero-copy{order:2;min-height:360px}
+      .hero-img{order:1;min-height:500px}
+    }
+    @media(max-width:560px){
+      .nav{height:70px;padding:0 4%}
+      .logo{font-size:32px}
+      .bag-btn{padding:10px 14px}
+      .products{grid-template-columns:1fr 1fr;gap:12px}
+      .card img{height:245px}
+      .info{padding:10px}
+      .info h3{font-size:21px}
+      .section{padding:50px 4%}
+      .section-head{display:block}
+      .view{display:block;margin-top:10px}
+      .hero-img{min-height:450px}
+    }
+  </style>
+</head>
+
+<body>
+
+<nav class="nav">
+  <div class="logo">Aneezay's</div>
+  <ul class="nav-links">
+    <li><a href="#home">HOME</a></li>
+    <li><a href="#lawn">LAWN</a></li>
+    <li><a href="#new">NEW ARRIVALS</a></li>
+    <li><a href="#fancy">FANCY</a></li>
+    <li><a href="#contact">CONTACT</a></li>
+  </ul>
+  <button class="bag-btn" onclick="openCart()">🛍️ Bag (<span id="count">0</span>)</button>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <div class="hero-inner">
+      <div class="kicker">PREMIUM PAKISTANI FASHION</div>
+      <h1>Aneezay's</h1>
+      <div class="hero-sub">ELEGANCE · TRADITION · STYLE</div>
+      <button class="primary" onclick="document.getElementById('new').scrollIntoView()">SHOP COLLECTION →</button>
+    </div>
+  </div>
+  <img class="hero-img" src="blue-dress.jpg" alt="Aneezay's featured dress">
+</section>
+
+<section class="section" id="new">
+  <div class="section-head">
+    <div><h2>New Arrivals</h2><p>Discover our latest collection</p></div>
+    <span class="view">VIEW ALL →</span>
+  </div>
+  <div class="products" id="newProducts"></div>
+</section>
+
+<section class="section alt" id="lawn">
+  <div class="section-head">
+    <div><h2>Lawn Collection</h2><p>Light · Elegant · Everyday</p></div>
+    <span class="view">VIEW ALL →</span>
+  </div>
+  <div class="products" id="lawnProducts"></div>
+</section>
+
+<section class="section" id="fancy">
+  <div class="section-head">
+    <div><h2>Fancy Edit</h2><p>Festive looks for special moments</p></div>
+    <span class="view">VIEW ALL →</span>
+  </div>
+  <div class="products" id="fancyProducts"></div>
+</section>
+
+<aside class="cart" id="cart">
+  <div class="cart-head">
+    <h2>Your Bag</h2>
+    <button class="close" onclick="closeCart()">×</button>
+  </div>
+  <div id="cartItems"></div>
+  <div class="total"><span>Total</span><span>Rs. <span id="total">0</span></span></div>
+  <button class="checkout-btn" onclick="openCheckout()">PROCEED TO CHECKOUT</button>
+</aside>
+
+<div class="overlay" id="overlay">
+  <div class="checkout">
+    <div class="checkout-top">
+      <h2>Place Your Order</h2>
+      <button class="close" onclick="closeCheckout()">×</button>
+    </div>
+    <p>Enter your details and continue to WhatsApp.</p>
+
+    <div class="field">
+      <label>Full Name *</label>
+      <input id="name" type="text" placeholder="Your full name">
+    </div>
+    <div class="field">
+      <label>Phone Number *</label>
+      <input id="phone" type="tel" placeholder="03XXXXXXXXX">
+    </div>
+    <div class="field">
+      <label>City *</label>
+      <input id="city" type="text" placeholder="Your city">
+    </div>
+    <div class="field">
+      <label>Complete Delivery Address *</label>
+      <textarea id="address" placeholder="House / Street / Area / City"></textarea>
+    </div>
+    <div class="field">
+      <label>Size</label>
+      <select id="size">
+        <option value="Not specified">Select size</option>
+        <option>XS</option><option>S</option><option>M</option>
+        <option>L</option><option>XL</option><option>Custom</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Additional Note</label>
+      <textarea id="note" placeholder="Color preference, special request, etc."></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button class="cancel" onclick="closeCheckout()">Cancel</button>
+      <button class="whatsapp" onclick="sendWhatsApp()">💬 Order on WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<section class="contact" id="contact">
+  <h2>Contact Aneezay's</h2>
+  <p>For orders & enquiries</p>
+  <p>WhatsApp: <a href="https://wa.me/923009482932" target="_blank" rel="noopener">0300-948 2932</a></p>
+  <p>Email: <a href="mailto:aneezaybrand@gmail.com">aneezaybrand@gmail.com</a></p>
+</section>
+
+<footer>© 2026 Aneezay's. All Rights Reserved.</footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const WHATSAPP = "923009482932";
+
+const products = [
+  {id:1, name:"Areej Set", price:6990, category:"New Arrival", image:"blue-dress.jpg"},
+  {id:2, name:"Mehfil Embroidered", price:8990, category:"Fancy", image:"red-bridal.jpg"},
+  {id:3, name:"Rang-e-Bahar", price:7490, category:"Traditional", image:"blue-dress.jpg"},
+  {id:4, name:"Rosé Co-ord", price:5190, category:"Casual", image:"red-bridal.jpg"},
+  {id:5, name:"Noor Lawn Set", price:4290, category:"Lawn", image:"blue-dress.jpg"},
+  {id:6, name:"Sahar Set", price:4590, category:"Lawn", image:"blue-dress.jpg"},
+  {id:7, name:"Gulabo Luxe", price:5990, category:"Lawn", image:"red-bridal.jpg"},
+  {id:8, name:"Zara Lawn", price:4790, category:"Lawn", image:"blue-dress.jpg"},
+  {id:9, name:"Zarqa Festive", price:10990, category:"Fancy", image:"red-bridal.jpg"},
+  {id:10, name:"Ivory Kurta", price:3990, category:"Traditional", image:"blue-dress.jpg"},
+  {id:11, name:"Royal Mehndi", price:8990, category:"Fancy", image:"red-bridal.jpg"},
+  {id:12, name:"Rang-e-Bahar Luxe", price:7490, category:"Traditional", image:"blue-dress.jpg"}
+];
+
+let cart = [];
+
+function money(n){
+  return n.toLocaleString("en-PK");
+}
+
+function card(p){
+  return `
+    <article class="card">
+      <img src="${p.image}" alt="${p.name}">
+      <div class="info">
+        <div class="category">${p.category}</div>
+        <h3>${p.name}</h3>
+        <div class="price">Rs. ${money(p.price)}</div>
+        <button class="add" onclick="addToCart(${p.id})">ADD TO BAG</button>
+      </div>
+    </article>`;
+}
+
+function renderProducts(){
+  document.getElementById("newProducts").innerHTML =
+    products.slice(0,4).map(card).join("");
+
+  document.getElementById("lawnProducts").innerHTML =
+    products.filter(p => p.category === "Lawn").map(card).join("");
+
+  document.getElementById("fancyProducts").innerHTML =
+    products.filter(p => p.category === "Fancy").map(card).join("");
+}
+
+function addToCart(id){
+  const p = products.find(x => x.id === id);
+  const found = cart.find(x => x.id === id);
+
+  if(found) found.qty++;
+  else cart.push({...p, qty:1});
+
+  renderCart();
+  showToast(p.name + " added to your bag");
+}
+
+function changeQty(id, amount){
+  const item = cart.find(x => x.id === id);
+  if(!item) return;
+
+  item.qty += amount;
+  if(item.qty <= 0) cart = cart.filter(x => x.id !== id);
+
+  renderCart();
+}
+
+function removeItem(id){
+  cart = cart.filter(x => x.id !== id);
+  renderCart();
+}
+
+function renderCart(){
+  const box = document.getElementById("cartItems");
+
+  if(cart.length === 0){
+    box.innerHTML = '<div class="empty">Your bag is empty. Add a dress to continue.</div>';
+  }else{
+    box.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <img src="${item.image}" alt="${item.name}">
+        <div class="cart-info">
+          <h4>${item.name}</h4>
+          <div>Rs. ${money(item.price * item.qty)}</div>
+          <div class="qty">
+            <button onclick="changeQty(${item.id},-1)">−</button>
+            <span>${item.qty}</span>
+            <button onclick="changeQty(${item.id},1)">+</button>
+          </div>
+          <button class="remove" onclick="removeItem(${item.id})">REMOVE</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  const total = cart.reduce((sum,item) => sum + item.price * item.qty, 0);
+  const count = cart.reduce((sum,item) => sum + item.qty, 0);
+
+  document.getElementById("total").textContent = money(total);
+  document.getElementById("count").textContent = count;
+}
+
+function openCart(){
+  document.getElementById("cart").classList.add("open");
+}
+
+function closeCart(){
+  document.getElementById("cart").classList.remove("open");
+}
+
+function openCheckout(){
+  if(cart.length === 0){
+    showToast("Please add a dress to your bag first");
+    return;
+  }
+  document.getElementById("overlay").classList.add("open");
+}
+
+function closeCheckout(){
+  document.getElementById("overlay").classList.remove("open");
+}
+
+function sendWhatsApp(){
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const city = document.getElementById("city").value.trim();
+  const address = document.getElementById("address").value.trim();
+  const size = document.getElementById("size").value;
+  const note = document.getElementById("note").value.trim();
+
+  if(!name || !phone || !city || !address){
+    showToast("Please fill all required (*) fields");
+    return;
+  }
+
+  if(cart.length === 0){
+    showToast("Your bag is empty");
+    closeCheckout();
+    return;
+  }
+
+  const total = cart.reduce((sum,item) => sum + item.price * item.qty, 0);
+
+  const itemsText = cart.map(item =>
+    `• ${item.name} × ${item.qty} — Rs. ${money(item.price * item.qty)}`
+  ).join("\n");
+
+  const message =
+`Assalam o Alaikum Aneezay's! 🌸
+
+I want to place an order.
+
+ORDER DETAILS:
+${itemsText}
+
+Total: Rs. ${money(total)}
+
+CUSTOMER DETAILS:
+Name: ${name}
+Phone: ${phone}
+City: ${city}
+Address: ${address}
+Size: ${size}
+Note: ${note || "None"}
+
+Please confirm my order and delivery charges. Thank you! 💕`;
+
+  window.open(
+    "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(message),
+    "_blank"
+  );
+}
+
+function showToast(text){
+  const toast = document.getElementById("toast");
+  toast.textContent = text;
+  toast.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => toast.classList.remove("show"), 2200);
+}
+
+renderProducts();
+renderCart();
+</script>
+
+</body>
+</html>
